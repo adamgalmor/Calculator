@@ -1,12 +1,23 @@
 <ion-navbar *navbar>
   <ion-title>
-    Ionic Blank
+    Calculator
   </ion-title>
 </ion-navbar>
 
 <ion-content class="home" padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-item>
+  <ion-label>Start Date</ion-label>
+  <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="startDate"></ion-datetime>
+</ion-item>
+<ion-item>
+    <ion-label fixed>Days to add</ion-label>
+    <ion-input type="text" [(ngModel)]="daysToAdd"></ion-input>
+</ion-item>
+<ion-item>
+    <ion-label fixed>Result</ion-label>
+    <ion-input type="text" [(ngModel)]="result"></ion-input>
+</ion-item>
+
+<button (click)="calculate()">Calculate</button>
+
 </ion-content>
