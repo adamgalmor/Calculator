@@ -16,20 +16,50 @@ var moment = require('moment');
 var HomePage = (function () {
     function HomePage(navController) {
         this.navController = navController;
-        this.vecationStart = moment("2016/01/01");
-        this.vecationEnd = moment("2016/01/05");
+        //Pesover:
+        this.v1Start = "2016/04/22";
+        this.v1End = "2016/04/29";
+        //Summer break:
+        this.v2Start = "2016/07/21";
+        this.v2End = "2016/09/05";
+        //Yum Kipor:
+        this.v3Start = "2016/10/12";
+        this.v3End = "2016/10/12";
+        //Sukot:
+        this.v4Start = "2016/10/16";
+        this.v4End = "2016/10/23";
     }
     HomePage.prototype.calculate = function () {
-        var calculatedDate = moment(this.startDate).add(this.daysToAdd, 'days');
-        // alert('start date: ' + this.startDate);
-        // alert('daysToAdd: ' + this.daysToAdd);
-        // alert('calculatedDate: ' + moment(calculatedDate).format('DD/MM/YYYY'));
-        if (calculatedDate >= this.vecationStart && calculatedDate <= this.vecationEnd) {
-            this.result = this.vecationEnd.add(1, 'days').format('DD/MM/YYYY');
+        var calculatedDate = moment(this.startDate, 'YYYY-MM-DD').add(this.daysToAdd, 'days');
+        var v1Start = moment(this.v1Start, 'YYYY/MM/DD');
+        var v1End = moment(this.v1End, 'YYYY/MM/DD');
+        var v2Start = moment(this.v2Start, 'YYYY/MM/DD');
+        var v2End = moment(this.v2End, 'YYYY/MM/DD');
+        var v3Start = moment(this.v3Start, 'YYYY/MM/DD');
+        var v3End = moment(this.v3End, 'YYYY/MM/DD');
+        var v4Start = moment(this.v4Start, 'YYYY/MM/DD');
+        var v4End = moment(this.v4End, 'YYYY/MM/DD');
+        //Pesover:
+        if (calculatedDate >= v1Start && calculatedDate <= v1End) {
+            this.result = v1End.add(1, 'days').format('DD/MM/YYYY');
+        }
+        else if (calculatedDate >= v2Start && calculatedDate <= v2End) {
+            this.result = v1End.add(1, 'days').format('DD/MM/YYYY');
+        }
+        else if (calculatedDate >= v3Start && calculatedDate <= v3End) {
+            this.result = v1End.add(1, 'days').format('DD/MM/YYYY');
+        }
+        else if (calculatedDate >= v4Start && calculatedDate <= v4End) {
+            this.result = v1End.add(1, 'days').format('DD/MM/YYYY');
         }
         else {
             this.result = calculatedDate.format('DD/MM/YYYY');
         }
+        //Friday:
+        if (moment(this.result, 'DD/MM/YYYY').day() == 5)
+            this.result = moment(this.result, 'DD/MM/YYYY').add(2, 'days').format('DD/MM/YYYY');
+        else if (moment(this.result, 'DD/MM/YYYY').day() == 6)
+            this.result = moment(this.result, 'DD/MM/YYYY').add(1, 'days').format('DD/MM/YYYY');
     };
     HomePage = __decorate([
         core_1.Component({
